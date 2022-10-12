@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>hello div</div>
+    <div>hello div</div>
+    <div>hello div</div>
+    <button id="btn">点我执行方法</button>
+    <script>
+        // 获取类数组对象
+        // let divs = document.getElementsByTagName('div');
+        // 凡是部署了Symbol（Symbol.iterator)迭代器接口方法 我们都可以使用for of 或者next方法来遍历数据
+        // 获取迭代器接口方法
+        // let iterator = divs[Symbol.iterator]();
+        // console.log(iterator);
+        // 原型中提供了一个next方法 可以通过该方法逐一遍历结构
+        // 返回值是一个对象 value:表示成员值   done表示是否遍历完成
+        // 如果遍历完成此时done将永远是true;value将永远是undefined；
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+
+        // 使用for of方法遍历
+        // for (let item of iterator) {
+        //     console.log(111, item);
+        // }
+        // next方法和for of方式不能同时使用 一旦一方遍历完毕 另一方就无法得到数据
+        // 数组中提供了获取迭代器接口方法的方式： keys  values  entries
+        // keys获取索引值  values:获取内容（成员值）  entries(获取索引值和成员值)
+        //let arr = ['aa', 'bb', 'cc', 'dd'];
+        // let keys = arr.keys();
+        // console.log(keys.next());
+        // console.log(keys.next());
+        // console.log(keys.next());
+        // let values = arr.values();
+        // console.log(values.next());
+        // console.log(values.next());
+        // console.log(values.next());
+        // let entries = arr.entries();
+        // console.log(entries.next());
+        // console.log(entries.next());
+        // console.log(entries.next());
+        // console.log(entries.next());
+        // for (let item of entries) {
+        //     console.log(item);
+        // }
+        // 通过for of 遍历数组，但是无法访问到索引值
+        // for (let item of arr) {
+        //     console.log(item);
+        // }
+        // 如果想要得到索引值可以通过循环变量的方法
+        // let i = 0;
+        // for (let item of arr) {
+        //     console.log(item, i);
+        //     i++;
+        // }
+        // 当不需要考虑索引值的情况下，而是希望快速获取数组成员，则使用for of的方式
+        // 当需要使用索引值的时候则使用for循环
+
+        // for in 遍历
+
+        // for (let key in arr) {
+        //     console.log(typeof key, arr[key]);
+        // }
+        // for (let i = 0; i < arr.length; i++) {
+        //     console.log(typeof i, arr[i]);
+        // }
+        // 总结：for循环用来遍历数组，for in 循环用来遍历对象，for of 循环遍历实现了迭代器接口的对象（包括数组）
+    </script>
+    <script>
+        // 定义msg数据
+        // let msg = 'hello msg';
+        // let  num = 'num';
+        // // 定义对象
+        // let obj = {
+        //     msg: 'hello msg',
+        //     msg: msg,
+        //     // 当key和value是同名时，即可省略key和冒号
+        //     msg,
+        //     // 可以通过[]设置属性名（内部是js环境）
+        //     [num.toUpperCase()]: 500,
+        //     title: 'nihao',
+        //     // 之前定义方法：
+        //     say: function() {
+        //         console.log('hello');
+        //     },
+        //     // 现在可以省略冒号和function关键字
+        //     say2() {
+        //         console.log('hello say2')
+        //     }
+        // }
+        // // 之前可以通过[]获取value值
+        // console.log(obj['msg']);
+        // console.log(obj['num']);
+        // console.log(obj);
+
+        // 总结：ES6提供的新的语法：
+        // 1. 当key和value的值相同时可以省略value和冒号
+        // 2. 之前可以通过[]获取属性值，现在可以通过[]设置属性名
+        // 3. 定义方法的时候可以省略function关键字和冒号
+    </script>
+    <script>
+        // is 方法：
+        //1. 0 -0 之前在进行全等判断的时候得到的是true
+        // 0 和 -0 之间是差一个符号位，在二进制中，储存的数据是不同的
+        // console.log(0 === -0);
+        // console.log(0 / 1 === 0 / -1);
+        // // 2. NaN和NaN在进行全等判断的时候得到的是false
+        // // 所有NaN都是表示'不是一个数字',他们的储蓄地址是一样的
+        // console.log(0 / 0 === +'a123');
+
+        // // ES6为了纠正上面两个问题提供了is方法
+        // console.log(Object.is(0 / 1, 0 / -1));
+        // console.log(Object.is( 0 / 0,  +'a132'));
+        // // 对其他数据的判断是一样的
+        // console.log(100 === 100.00);
+        // console.log(123 === +'123');
+        // console.log(Object.is(100, 100.00));
+        // console.log(Object.is(123, +'123'));
+    </script>
+    <script>
+        // 对象解构
+        // 定义对象
+        // let obj = {
+        //     msg: 'hello msg',
+        //     num: 100,
+        //     title: 'nihao',
+        //     say() {
+        //         console.log('say', this);
+        //     },
+        //     size: {
+        //         width: 10,
+        //         height: 20
+        //     }
+        // }
+        // 之前可以通过点语法或者中括号语法获取数据值
+        // console.log(obj.msg);
+        // console.log(obj['title']);
+        // // 为了简化访问数据的方式提供了解构语法
+        // let  {key1, key2, ...keys} = obj;
+
+        /***
+         * 结构问题：
+         * 1 如果使用var 解构，会污染全局对象，我们可以使用let关键字解决；
+         * 2 解构出来的方法，方法中的this将会发生变化
+         * 3 对于引用类型来说只是指向的改变，而对于值类型来说，是真正的复制
+         **/
+        // 解构的时候变量名称必须和对象中的数据名称是一致的    
+        // var {msg, num, title} = obj;
+        // console.log(window.msg, window.num);
+        // 使用let关键字解构被window挂载的问题
+        // let {msg, num, title} = obj;
+        // console.log(window.msg, window.num);
+        // this指向问题
+        // obj.say();   // obj
+        // let {say} = obj;
+        // say();  // window
+        // 对于引用类型来说。只是改变指向，而对于值类型来说是真正的复制
+        // let {num, size} = obj;
+        // num = 200;
+        // console.log(obj.num);
+        // obj.size.width = 500;
+        // console.log(size);
+        // keys获取的是剩余属性，如果没有剩余属性，获取到的就是一个空对象
+        // rest参数 只能放在最后面使用
+        // let {msg, num, ...keys} = obj;
+        // console.log(keys);
+
+        // // 逆运算：我们可以通过三个点语法，将一个对象中的所有数据传递给一个对象字面量中{...keys};
+        // let result = {...obj};
+        // console.log(result);
+
+        // 之前我们可以通过点语法或者是中括号语法获取数据值
+        // console.log(obj.title);
+        // console.log(obj['msg']);
+        // 为了简化访问数据的方式提供了解构语法
+        // let { key1, key2, ...keys } = obj;
+        // 解构的问题：
+        // 1. 如果使用var关键字解构，会污染全局对象（window），我们可以使用let关键字解决；
+        // 2. 解构出来的方法，方法中的this会发生变化，解构之前的this指向是obj,解构之后this是window;
+        // 3.对于引用类型来说只是指向的改变，对于值类型来说是真正的复制
+        // 注意：解构的时候变量名称和对象中的数据是一样的
+        // var {msg, num, title} = obj;
+        // console.log(window.title);
+        // console.log(window.num);
+        // 使用let关键字解构被window挂载的问题
+        // let {msg, num, title} = obj;
+        // console.log(window.title);
+        // console.log(window.num);
+        // this指向问题
+        // obj.say();
+        // let {say} = obj;
+        // say();
+        // 对于引用类型来说是指向发生改变，对于值类型来说是真正的复制
+        // let { num, size } = obj;
+        // num = 200;
+        // console.log(obj.num);
+        // obj.size.width = 500;
+        // console.log(size);
+        // keys获取的是剩余属性，如果没有剩余属性，获取到的就是一个空对象
+        // let {msg, num, title, ...keys} = obj;
+        // console.log(keys);
+
+        // 逆运算：我们可以通过三点语法，将一个对象中所有的数据传递给一个对象字面量中{...keys};
+        // let result = {...obj};
+        // console.log(result);
+    </script>
+    <script>
+        // // 数组解构
+        // let colors = ['red', 'green', 'blue', 'pink'];
+        // // 解构的时候使用let关键字可以避免被window挂载
+        // // 解构数组成员的时候，只需要对应数组的成员即可，如果有则返回该成员，没有则返回undefined;
+        // let [red, green, ...items] = colors;
+        // // console.log(red, green);
+        // // console.log(pink);
+        // // 获取剩余参数
+        //     // 1.如果有剩余成员，获取到数组中的所有剩余成员
+        //     // 2.如果没有剩余成员，获取到拿一个空数组
+        //     // 3.前面解构变量可以正常使用
+        // // console.log(items);
+        // // // 逆运算
+        // // let newArr = [...colors];
+        // // console.log(newArr);
+        // // 参数互换
+        // let [a, b, c] = ['aa', 'bb', 'cc'];
+        // console.log(a, b, c);
+
+        // // 获取类数组对象
+        //  let divs = document.getElementsByTagName('div');
+        // // // 将类数组转为数组的三种方法：
+        // // // 1.Array.prototype.slice.call()
+        // // console.log(Array.prototype.slice.call(divs));
+        // // // 2. from
+        // // console.log(Array.from(divs));
+        // // // 3.  ...arr
+        // // console.log([...divs]);
+        // console.log(...divs);
+    </script>
+    <script>
+        // 函数默认参数
+        // ES6提供了适配默认参数的方式：直接为形参赋值即可
+        // function demo(color) {
+        //     // 适配默认参数
+        //         // 使用|| 运算符会忽略6个值为false的参数
+        //     // color = color || '其他';
+        //     // 使用三元运算符
+        //     color = color === undefined ? '其他' : color;
+        //     console.log(color);
+        // }
+        // demo();
+        // demo('');
+        // demo(0);
+        // demo(undefined);
+        // demo(null);
+        // demo(NaN);
+        // demo(false);
+        // demo('green')
+        // function demo(color = '其他') {
+
+        //     console.log(color);
+        // }
+        // demo();
+        // demo('');
+        // demo(0);
+        // demo(undefined);
+        // demo(null);
+        // demo(NaN);
+        // demo(false);
+        // demo('green')
+        // ES6拓展得适配默认参数的方式与三元运算符的方式是等价的
+        // 参数对象的默认参数适配
+        // function demo({msg = 'hello'}) {
+        //     console.log(msg);
+        // }
+        // demo({num: 500});
+    </script>
+    <script>
+        // 获取剩余参数
+        // 求出参数之和
+        //function demo(...args) {
+        // // 方法一：
+        // // 定义结果变量
+        // let result = 0;
+        // // 遍历类数组对象
+        // for(let i = 0; i < arguments.length; i++) {
+        //     result += arguments[i];
+        // }
+
+        // 方法二：
+        // let result = Array.from(args).reduce(function(prev, item) {
+        //     return prev + item;
+        // }, 0)
+
+        // 方法三：
+        // 获取到的剩余参数是一个数组，可以直接调用数组方法 
+        // let result = args.reduce(function(prev, item) {
+        //     return prev + item;
+        // }, 0);
+        // //console.log(args);
+        // console.log(result);
+        //}
+        // demo(1, 2);
+        // demo(1, 2, 3);
+        // demo(1, 2, 3, 4,);
+        // demo(1, 2, 3, 4, 5,);
+        // demo(1, 2, 3, 4, 5, 6);
+        // demo(1, 2, 3, 4, 5, 6, 7);
+
+        // let arr = ['red', 'pink', 'blue', 'green'];
+        // function demo() {
+        //     console.log(arguments);
+        // }
+        // // demo(arr);
+        // // // 希望将数组中的每一项作为参数传递到方法中，就可以使用apply方法
+        // // demo.apply(null, arr);
+        // // 还可以使用拓展运算符，展开运算符
+        // demo(...arr);
+
+        // 优化copyWithin方法
+        // 定义数组
+        // let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // // 实现方法
+        // Array.prototype.newCopyWithin = function(pos, start, end) {
+        //     // 获取需要替换的字符
+        //     let subStr = this.slice(start, end);
+        //     // 删除要被替换的字符并传递参数
+        //     // this.splice.apply(this, [pos, end - start].concat(subStr));
+        //     // 优化
+        //    return this.splice(pos, end - start, ...subStr), this;
+        // }
+        // console.log(arr.newCopyWithin(2, 5, 8));
+
+        // 箭头函数
+        // 函数定义式
+        // function demo() {};
+        // // 函数表达式
+        // let demo2 = function() {};
+        // // 构造函数式
+        // function Demo3() {};
+        // // 箭头函数
+        // let demo4 = () => {
+        //     console.log('demo4');
+        // }
+        // demo4();
+        // 几点省略语法：
+        // 1.如果参数集合中只有一个参数，即可省略参数集合
+        // 如果使用三点语法获取剩余参数或者是解构语法。不能省略参数集合
+        // 2.如果参数体中只有一句话或者返回值时可以省略函数体和return 
+        // let arr = [10, 20, 30];
+        // 求平方数
+        // let result = arr.map(function(item) {
+        //     return item * item;
+        // })
+        // 使用箭头函数
+        // let result = arr.map((item) => item * item);
+        // console.log(result);
+        // 注意事项：
+        // 1 解构的时候不能省略参数集合的
+        // 2 获取剩余参数的时候不能省略
+        // let demo = ({msg}) => {
+        //     console.log(obj.msg);
+        // }
+        // let demo = (...args) => {
+        //     console.log(args);
+        // }
+        // demo({msg: 'msg', num: 500}, 100)
+        // 总结：使用箭头函数配合遍历器方法可以是代码变的更加简洁优雅
+    </script>
+    <script>
+        // 箭头函数的特点：
+        // 1. 无法使用arguments，但是我们可以使用三点语法获取剩余参数
+        // let demo = (...args) => {
+        //     // 无法使用
+        //     // console.log(arguments);
+        //     // 可以使用
+        //     console.log(args);
+        //     console.log(this);
+        // }
+        // // demo(1);
+        // demo.call(document.body, 2);
+        // // 2. 无法作为构造函数来使用,箭头函数没有this,所以不能在原型中添加数据
+        // // function People(name, age, gender) {
+        // //     this.name = name;
+        // //     this.age = age;
+        // //     this.gender = gender;
+        // // }
+        // let  People = (name, age, gender) => {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.gender = gender;
+        // }
+        // // 方法
+        // People.prototype.getName = function() {
+        //     return this.name;
+        // }
+        // let p = new People('xiaming', 12, 'nan');
+        // console.log(p);
+    </script>
+    <script>
+        // 箭头函数中的this指向永远是定义时的
+        'use strict';
+        // function fn() {
+        //     console.log(this);
+        // }
+        // fn();
+        // let demo = (...args) => {
+        //     console.log(this);
+        // }
+        // demo();
+        // 定义数据
+        // let fn1 = function() {
+        //     console.log('fn1', this);
+        // };
+        // let obj = {
+        //     fn1,
+        //     fn2() {
+        //         console.log('fn2', this);
+        //     },
+        //     fn3: function() {
+        //         console.log('fn3', this);
+        //         let fn4 = () => {
+        //             console.log('fn4', this);
+        //         }
+        //         fn4();
+        //     },
+        //     size: {
+        //         fn5: () => {
+        //             console.log('fn5', this)
+        //         },
+        //         fn6() {
+        //             console.log('fn6', this);
+        //         }
+        //     }
+        // }
+        // obj.fn1();         // obj         
+        // obj.fn2();         // obj
+        // obj.fn3();         // obj  obj
+        // obj.size.fn5();    // window
+        // obj.size.fn6()     // size
+
+        // 箭头函数注意事项： 
+        // 箭头函数虽然好用但是不能滥用；在定义延时器中的函数时不关心this指向，所以可以使用箭头函数
+        btn.onclick = function() {
+                console.log('click method', this);
+            }
+            // btn.onclick = () => {
+            //     console.log('click method', this);
+            // }
+
+        // 总结：如果函数中有关于this的设定，此时都不要使用箭头函数
+        // 如果函数内部不关心this指向，都可以使用箭头函数
+    </script>
+    <script>
+        // 复制对象的方法：assign
+        let obj = {
+            name: 'Tom',
+            name: 12
+        }
+        let obj2 = {
+            name: 'jeery',
+            age: 13,
+        }
+        let obj3 = {
+                num: 500,
+                color: ['red', 'green', 'blue']
+            }
+            // 开始复制
+            // 第一个参数表示被复制的对象
+            // 第二个参数开始表示要复制的对象，同名属性后面的会覆盖前面的
+            // let result = Object.assign(obj, obj2, obj3)
+            // console.log(result);
+            // console.log(obj);
+            // assign：复制属于浅复制；值类型是直接复制，引用类型相当于指针的改变
+            // result.num = 1000; 
+            // console.log(obj3.num);
+            // result.color.push('pink');
+            // console.log(obj3);
+            // 简单实现深复制：JSON.parse(JSON.stringify)
+            // 定义对象
+            // let jsonObj = {msg: 'hello msg', num: 100};
+            // let result = JSON.parse(JSON.stringify(jsonObj));
+            // console.log(Object.is(result, jsonObj));
+            // result.msg = 'hello';
+            // console.log(jsonObj.msg);
+            // jquery中extend方法第一个参数传递true的时候就是深复制了
+
+        // 实现assign方法：
+        // Object.defineProperty(Object, 'assign2', {
+        //     // 定义值
+        //     value: function(target) {
+        //         // 局部严格模式
+        //         'use strict';
+        //         // 安全校验
+        //         if(typeof target !== 'object' || target == null) {
+        //             throw new Error('不能转换target参数');
+        //         }
+        //         // 缓冲数据
+        //         let to = Object(target);
+        //         // 遍历剩余参数
+        //         for (let i = 1; i < arguments.length; i++) {
+        //             // 获取一个对象
+        //             let obj = arguments[i];
+        //             // 遍历对象
+        //             for (let key in obj) {
+        //                 // 判断是否是自身数据
+        //                 if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        //                     to[key] = obj[key];
+        //                 }                    
+        //             }
+        //         }
+        //         // 返回结果
+        //         return to;
+        //     }
+        // })
+        // let result = Object.assign2(obj, obj2, obj3);
+        // console.log(result);
+        // console.log(obj);
+    </script>
+</body>
+
+</html>
